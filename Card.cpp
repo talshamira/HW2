@@ -1,11 +1,13 @@
 #include "Card.h"
 
+//constructor for Card
 Card::Card(CardType type, const CardStats& stats)
 {
     this->m_effect = type;
     this->m_stats = stats; 
 }
 
+//Card encounter - plays the card according to the appropriate type
 void Card::applyEncounter(Player& player) const
 {
     switch(this->m_effect)
@@ -42,6 +44,8 @@ void Card::applyEncounter(Player& player) const
     }
 }
 
+
+//prints the card info based on type
 void Card::printInfo() const
 {
     switch (this->m_effect)

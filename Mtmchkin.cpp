@@ -1,5 +1,5 @@
 #include "Mtmchkin.h"
-const int MAX_LEVEL = 10;
+
 
 //construtor
 Mtmchkin::Mtmchkin(const char* playerName, const Card* cardsArray, int numOfCards) : m_player(playerName)
@@ -53,6 +53,8 @@ Mtmchkin& Mtmchkin::operator=(const Mtmchkin& game)
     return *this;
 }
 
+
+//plays the next card in the deck and checks if the game has finished
 void Mtmchkin::playNextCard()
 {
     this->m_deck[this->m_nextCard].printInfo();
@@ -66,7 +68,7 @@ void Mtmchkin::playNextCard()
     {
         this->m_status = GameStatus::Loss;
     }
-    else if(this->m_player.getLevel() == MAX_LEVEL)
+    else if(this->m_player.getLevel() == Player::MAX_LEVEL)
     {
         this->m_status = GameStatus::Win;
     }
@@ -83,10 +85,13 @@ void Mtmchkin::playNextCard()
     }
 }
 
+
+//returns true if the game has ended and false otherwise
 bool Mtmchkin::isOver() const
 {
     return this->m_status != GameStatus::MidGame;
 }
+
 
 GameStatus Mtmchkin::getGameStatus() const
 {
