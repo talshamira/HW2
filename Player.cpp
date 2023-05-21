@@ -3,10 +3,10 @@
 //
 
 #include "Player.h"
-using namespace std;
 
 
-Player::Player(string name, int maxHP, int force) :
+
+Player::Player(std::string name, int maxHP, int force) :
     m_name(name),
     m_level(1),
     m_force(force),
