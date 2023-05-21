@@ -16,6 +16,9 @@ using namespace std; //TODO check if can use in header
 class Player {
 
 public:
+    static const int MAX_LEVEL = 10;
+    static const int DEFAULT_MAX_HP = 100;
+    static const int DEFAULT_FORCE = 5;
     Player(string name, int maxHP = DEFAULT_MAX_HP, int force = DEFAULT_FORCE);
 
     ~Player() = default;
@@ -44,10 +47,6 @@ private:
     int m_maxHP;
     int m_HP;
     int m_coins;
-
-
-    static const int DEFAULT_MAX_HP = 100;
-    static const int DEFAULT_FORCE = 5;
 };
 
 

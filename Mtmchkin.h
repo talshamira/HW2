@@ -57,11 +57,34 @@ public:
      */
     GameStatus getGameStatus() const;
 
-    //TODO: complete the Mtmchkin class.
+    /*
+     * Copy Constructor
+     * @param playerName - The name of the player.
+     * @param cardsArray - A ptr to the cards deck.
+     * @param numOfCards - Num of cards in the deck.
+     * @result
+     *      An instance of Mtmchkin
+     */
+    Mtmchkin(const Mtmchkin& game);
+
+
+    /*
+     * Destructor
+     */
+    ~Mtmchkin();
+
+
+    /*
+     * Operator =
+     */
+    Mtmchkin& operator=(const Mtmchkin& game);
 
 private:
-    //TODO: complete the Mtmchkin class.
-
+    GameStatus m_status;
+    Player m_player;
+    Card* m_deck;
+    int m_deckLength;
+    int m_nextCard;
 };
 
 

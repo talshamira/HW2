@@ -5,13 +5,15 @@
 #include "Player.h"
 using namespace std;
 
+
 Player::Player(string name, int maxHP, int force) :
     m_name(name),
-    m_maxHP(maxHP),
-    m_force(force),
     m_level(1),
-    m_coins(0),
-    m_HP(maxHP) {
+    m_force(force),
+    m_maxHP(maxHP),
+    m_HP(maxHP),
+    m_coins(0)
+{
     if(maxHP <= 0)
     {
         this->m_maxHP = DEFAULT_MAX_HP;
@@ -27,7 +29,10 @@ void Player::printInfo() const {
 }
 
 void Player::levelUp() {
-    ++this->m_level;
+    if(this->m_level < MAX_LEVEL)
+    {
+        this->m_level++;
+    }
 }
 
 int Player::getLevel() const {
@@ -35,7 +40,10 @@ int Player::getLevel() const {
 }
 
 void Player::buff(int forceToAdd) {
-    this->m_force += forceToAdd;
+    if(forceToAdd > 0)
+    {
+        this->m_force += forceToAdd;
+    }
 }
 
 void Player::heal(int hpToAdd) {
@@ -44,6 +52,10 @@ void Player::heal(int hpToAdd) {
         if(this->m_HP + hpToAdd <= this->m_maxHP)
         {
             this->m_HP += hpToAdd;
+        }
+        else
+        {
+            this->m_HP = this->m_maxHP;
         }
     }
 }
@@ -63,7 +75,7 @@ void Player::damage(int hpToDiminish) {
 }
 
 bool Player::isKnockedOut() const {
-    if(this->m_HP == 0)
+    if(this->m_HP <= 0)
     {
         return true;
     }
@@ -71,16 +83,23 @@ bool Player::isKnockedOut() const {
 }
 
 void Player::addCoins(int coinsToAdd) {
-    this->m_coins += coinsToAdd;
+    if(coinsToAdd > 0)
+    {
+        this->m_coins += coinsToAdd;
+    }  
 }
 
 bool Player::pay(int coinsToPay) {
-    if(coinsToPay <= this->m_coins)
+    if(coinsToPay > 0)
     {
-        this->m_coins -= coinsToPay;
-        return true;
+        if(coinsToPay <= this->m_coins)
+        {
+            this->m_coins -= coinsToPay;
+            return true;
+        }
+        return false;
     }
-    return false;
+    return true;
 }
 
 int Player::getAttackStrength() const {
